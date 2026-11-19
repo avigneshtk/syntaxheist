@@ -7,6 +7,7 @@ export interface Track {
   name: string
   description: string
   symbol: string
+  tags?: readonly string[]
 }
 
 export interface NavLink {
@@ -17,12 +18,28 @@ export interface NavLink {
 export interface ScheduleItem {
   time: string
   label: string
+  description?: string
   day: 1 | 2
+  type?: 'keynote' | 'hack' | 'food' | 'review' | 'deadline'
 }
 
 export interface FAQ {
   question: string
   answer: string
+}
+
+export interface HighlightItem {
+  number: string
+  label: string
+  description: string
+}
+
+export interface PrizeItem {
+  rank: string
+  title: string
+  status: string
+  description: string
+  perks: readonly string[]
 }
 
 // ─── Registration form ───────────────────────────────────────────────────────

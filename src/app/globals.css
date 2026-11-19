@@ -11,7 +11,7 @@
 
 @theme inline {
   /* SyntaxHeist colour palette */
-  --color-base:    #080b08;   /* deepest background                */
+  --color-dark:    #080b08;   /* deepest background                */
   --color-surface: #111711;   /* elevated surfaces (cards, nav)    */
   --color-primary: #72ff75;   /* neon green accent                 */
   --color-muted:   #9ca39c;   /* secondary / body text             */
@@ -35,6 +35,23 @@ body {
 }
 
 /* ── Custom utilities (Tailwind v4 @utility API) ────────────────────────── */
+
+/*
+  bg-base & border-base: maps to #080b08 without creating a conflicting
+  .text-base utility that overrides the standard font-size utility.
+*/
+@utility bg-base {
+  background-color: #080b08;
+}
+
+@utility border-base {
+  border-color: #080b08;
+}
+
+@utility text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 
 /*
   glow-primary: green box-shadow glow, used on buttons and accented elements.

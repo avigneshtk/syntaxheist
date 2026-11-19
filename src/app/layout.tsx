@@ -62,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           className={[
             "sr-only",
             "focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100]",
-            "focus:px-4 focus:py-2 focus:bg-primary focus:text-base",
+            "focus:px-4 focus:py-2 focus:bg-primary focus:text-[#080b08]",
             "focus:font-bold focus:font-mono focus:text-xs focus:tracking-widest focus:uppercase",
             "focus:rounded-sm focus:shadow-lg",
           ].join(" ")}

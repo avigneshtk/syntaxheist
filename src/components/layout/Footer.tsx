@@ -38,12 +38,12 @@ export default function Footer() {
             <h2 className="text-primary text-xs font-mono tracking-[0.3em] uppercase">
               Navigate
             </h2>
-            <ul className="space-y-3" role="list">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5" role="list">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted text-sm hover:text-white transition-colors duration-150"
+                    className="text-muted text-xs hover:text-white transition-colors duration-150"
                   >
                     {link.label}
                   </Link>
@@ -52,7 +52,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/register"
-                  className="text-primary text-sm hover:text-white transition-colors duration-150 inline-flex items-center gap-1.5"
+                  className="text-primary text-xs hover:text-white transition-colors duration-150 inline-flex items-center gap-1"
                 >
                   Register <span aria-hidden="true">→</span>
                 </Link>

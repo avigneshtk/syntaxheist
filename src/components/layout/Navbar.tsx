@@ -1,16 +1,7 @@
 'use client'
 
-// Navbar — fixed top navigation bar.
-// Client Component: needs scroll listener and mobile menu state.
-//
-// Behaviour:
-//   - Transparent when page is at top; solid bg-surface/90 + backdrop-blur
-//     after scrolling 20 px.
-//   - Desktop (md+): inline links + "Register" CTA button on the right.
-//   - Mobile: hamburger button toggles a slide-down menu.
-//   - Active route is highlighted in neon green.
-//   - Escape key closes the mobile menu.
-//   - Clicking any mobile link closes the menu.
+// Navbar — fixed top navigation bar with responsive in-page anchors & pages.
+// Client Component: scroll detection via useSyncExternalStore and mobile menu state.
 
 import { useState, useEffect, useCallback, useSyncExternalStore } from 'react'
 import Link from 'next/link'
@@ -61,13 +52,16 @@ export default function Navbar() {
     }
   }, [mobileOpen])
 
-  const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href)
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    if (href.startsWith('/#')) return false
+    return pathname.startsWith(href)
+  }
 
   const linkClasses = (href: string) =>
     cn(
-      'text-xs font-mono tracking-widest uppercase transition-colors duration-150',
-      'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded-sm px-1',
+      'text-xs font-mono tracking-wider uppercase transition-colors duration-150',
+      'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded-sm px-1 py-0.5',
       isActive(href)
         ? 'text-primary'
         : 'text-muted hover:text-white',
@@ -84,7 +78,7 @@ export default function Navbar() {
             : 'bg-transparent',
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
 
           {/* ── Brand / Logo ───────────────────────────────────────────── */}
           <Link
@@ -100,7 +94,7 @@ export default function Navbar() {
 
           {/* ── Desktop nav ────────────────────────────────────────────── */}
           <nav
-            className="hidden md:flex items-center gap-8"
+            className="hidden xl:flex items-center gap-6"
             aria-label="Primary navigation"
           >
             {NAV_LINKS.map((link) => (
@@ -108,6 +102,20 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+          </nav>
+
+          {/* ── Tablet nav (Compact view for md to xl) ───────────────────── */}
+          <nav
+            className="hidden md:flex xl:hidden items-center gap-4 text-xs font-mono"
+            aria-label="Primary navigation compact"
+          >
+            <Link href="/#about" className={linkClasses('/#about')}>About</Link>
+            <Link href="/#tracks" className={linkClasses('/#tracks')}>Tracks</Link>
+            <Link href="/#schedule" className={linkClasses('/#schedule')}>Schedule</Link>
+            <Link href="/#prizes" className={linkClasses('/#prizes')}>Prizes</Link>
+            <Link href="/#venue" className={linkClasses('/#venue')}>Venue</Link>
+            <Link href="/#faq" className={linkClasses('/#faq')}>FAQ</Link>
+            <Link href="/guide" className={linkClasses('/guide')}>Guide</Link>
           </nav>
 
           {/* ── Desktop CTA ────────────────────────────────────────────── */}
@@ -152,23 +160,23 @@ export default function Navbar() {
         aria-label="Mobile navigation"
         className={cn(
           'fixed top-16 left-0 right-0 z-40 md:hidden',
-          'bg-surface border-b border-primary/10',
-          'transition-all duration-300 ease-in-out overflow-hidden',
-          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0',
+          'bg-surface border-b border-primary/10 overflow-y-auto',
+          'transition-all duration-300 ease-in-out',
+          mobileOpen ? 'max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0 pointer-events-none',
         )}
       >
-        <div className="flex flex-col px-6 py-6 gap-6">
+        <div className="flex flex-col px-6 py-6 gap-4">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={cn(linkClasses(link.href), 'text-base')}
+              className={cn(linkClasses(link.href), 'text-base py-1')}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="pt-2">
+          <div className="pt-3 border-t border-primary/10">
             <GlowButton href="/register" size="md" className="w-full justify-center" onClick={() => setMobileOpen(false)}>
               Register Now
             </GlowButton>
