@@ -1,26 +1,76 @@
+/* SyntaxHeist — global styles & Tailwind v4 design tokens
+   ─────────────────────────────────────────────────────────
+   Tailwind v4 reads @theme to generate utility classes.
+   No tailwind.config.js is needed. Turbopack handles bundling
+   via @tailwindcss/turbopack (configured in next.config.ts).
+   ─────────────────────────────────────────────────────────── */
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ── Design tokens ──────────────────────────────────────────────────────── */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* SyntaxHeist colour palette */
+  --color-base:    #080b08;   /* deepest background                */
+  --color-surface: #111711;   /* elevated surfaces (cards, nav)    */
+  --color-primary: #72ff75;   /* neon green accent                 */
+  --color-muted:   #9ca39c;   /* secondary / body text             */
+  --color-white:   #ffffff;
+
+  /* Typography — Next.js Google Font CSS variables */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base resets ────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080b08;
+  color: #ffffff;
+}
+
+/* ── Custom utilities (Tailwind v4 @utility API) ────────────────────────── */
+
+/*
+  glow-primary: green box-shadow glow, used on buttons and accented elements.
+  glow-primary-sm: lighter version for subtler highlights.
+*/
+@utility glow-primary {
+  box-shadow: 0 0 24px rgba(114, 255, 117, 0.5);
+}
+
+@utility glow-primary-sm {
+  box-shadow: 0 0 12px rgba(114, 255, 117, 0.3);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #080b08; }
+::-webkit-scrollbar-thumb {
+  background:    rgba(114, 255, 117, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(114, 255, 117, 0.55);
+}
+
+/* ── Keyboard focus ring ────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline:        2px solid #72ff75;
+  outline-offset: 2px;
+  border-radius:  2px;
+}
+
+/* ── Selection colour ───────────────────────────────────────────────────── */
+
+::selection {
+  background-color: rgba(114, 255, 117, 0.25);
+  color:            #ffffff;
 }
