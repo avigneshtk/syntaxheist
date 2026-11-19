@@ -7,7 +7,7 @@
 import { useState } from 'react'
 import SectionLabel from '@/components/ui/SectionLabel'
 import { SCHEDULE, EVENT } from '@/lib/constants'
-import { Clock, Flag, Terminal, Coffee, Award } from 'lucide-react'
+import { Clock, Flag, Terminal, Coffee, Award, AlertCircle } from 'lucide-react'
 
 type TabOption = 'all' | 1 | 2
 
@@ -53,9 +53,15 @@ export default function ScheduleSection() {
             The Execution <span className="text-primary">Timeline</span>
           </h2>
           <p className="mt-4 text-muted text-sm sm:text-base leading-relaxed">
-            From the initial opening ceremony to the final demo pitches, here is the hour-by-hour roadmap
-            for the 24-hour hackathon. Timings are provisional and subject to minor adjustments.
+            From the 10:00 AM kickoff to the 24-hour conclusion, here is the provisional roadmap
+            for the hackathon. All milestones and activity timings are tentative and subject to organizer confirmation.
           </p>
+
+          {/* Provisional Disclaimer */}
+          <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-md bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-mono">
+            <AlertCircle size={14} className="shrink-0" />
+            <span>TENTATIVE TIMELINE — MILESTONES & SLOTS SUBJECT TO ORGANIZER CONFIRMATION</span>
+          </div>
 
           {/* Interactive Day Tabs */}
           <div

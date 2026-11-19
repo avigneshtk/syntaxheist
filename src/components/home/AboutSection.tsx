@@ -45,7 +45,7 @@ export default function AboutSection() {
               </p>
 
               <p className="text-muted text-sm sm:text-base leading-relaxed">
-                Organized under the auspices of <span className="text-white font-medium">IEEE FISAT Student Branch</span>, SyntaxHeist fosters cross-domain experimentation. Whether your passion lies in intelligent neural networks, decentralized protocols, or cyber defense, this hackathon provides the platform, compute, and mentorship to realize it.
+                Organized under the auspices of <span className="text-white font-medium">IEEE FISAT Student Branch</span>, SyntaxHeist fosters cross-domain experimentation. Whether your passion lies in intelligent neural networks, decentralized protocols, or cyber defense, this hackathon provides the platform and environment to realize it.
               </p>
             </div>
 
@@ -66,8 +66,8 @@ export default function AboutSection() {
                   <Zap size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">Rapid Mentorship</h4>
-                  <p className="text-[11px] text-muted mt-1 leading-tight">Active technical feedback rounds from industry veterans.</p>
+                  <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">Mentorship</h4>
+                  <p className="text-[11px] text-muted mt-1 leading-tight">Mentorship arrangements: To be announced.</p>
                 </div>
               </div>
 
@@ -76,8 +76,8 @@ export default function AboutSection() {
                   <Shield size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">Zero Fee Barrier</h4>
-                  <p className="text-[11px] text-muted mt-1 leading-tight">100% free participation including food and workspace.</p>
+                  <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">Open Participation</h4>
+                  <p className="text-[11px] text-muted mt-1 leading-tight">Collaborative problem solving across diverse engineering domains.</p>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ export default function AboutSection() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted/70">TEAM SIZE:</span>
-                  <span className="text-white">{EVENT.registration.teamSizeMin} – {EVENT.registration.teamSizeMax} Members</span>
+                  <span className="text-white">To be announced</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted/70">ADMISSION:</span>
@@ -140,7 +140,7 @@ export default function AboutSection() {
               </div>
 
               <div className="pt-2 text-muted/60 text-[10px]">
-                # Verification hash: SH27-IEEE-FISAT-STB64341
+                # Manifest reference: SYNTAXHEIST-2027-FISAT
               </div>
             </div>
 

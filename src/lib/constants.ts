@@ -38,10 +38,14 @@ export const EVENT = {
   registration: {
     isOpen:      false,               // flip to true when form goes live
     deadline:    null as string | null, // [TBA — set when confirmed]
-    fee:         'Free',
-    teamSizeMin: 1,
-    teamSizeMax: 4,
-    eligibility: 'Open to engineering students across recognized colleges',
+    // [TBA — registration fee will be announced by organizers]
+    fee:         'TBA' as string,
+    feeNote:     'Registration fee and participation details will be announced by the organizers.',
+    // [TBA — team size to be announced]
+    teamSize:    'To be announced',
+    teamSizeNotice: 'Team size: To be announced.',
+    // [TBA — eligibility rules to be confirmed by organizers]
+    eligibility: 'Eligibility and team formation guidelines will be announced in the official event rules.',
   },
 
   // [TBA — update when organizers provide official details]
@@ -49,7 +53,7 @@ export const EVENT = {
     email:       null as string | null, // e.g. 'contact@syntaxheist.in'
     phone:       null as string | null,
     helpdesk:    'Helpdesk contact details will be announced prior to registration opening.',
-    ieeeBranch:  'IEEE Student Branch FISAT (STB 64341)',
+    ieeeBranch:  'IEEE FISAT Student Branch',
   },
 
   // [TBA — update when official accounts are announced]
@@ -93,14 +97,15 @@ export const HIGHLIGHTS: readonly HighlightItem[] = [
     description: 'From Artificial Intelligence to Web3 and Cybersecurity, tackle challenges in modern cutting-edge tech.',
   },
   {
-    number: '04',
-    label: 'Max Team Size',
-    description: 'Compete solo or build an agile squad of up to 4 innovators with cross-college collaboration allowed.',
+    // [PROVISIONAL — team size pending organizer confirmation]
+    number: 'TBA',
+    label: 'Team Size',
+    description: 'Team size: To be announced. Official guidelines will be published in the event rules.',
   },
   {
     number: 'TBA',
-    label: 'Prize Pool & Swag',
-    description: 'Competitive cash prizes, partner tracks, badges and certificates for all qualifying participants.',
+    label: 'Prize Pool',
+    description: 'Prize pool, cash awards, and sponsor tracks are being finalized and will be published once officially confirmed.',
   },
 ] as const
 
@@ -160,92 +165,86 @@ export const TRACKS: readonly Track[] = [
 export const SCHEDULE: readonly ScheduleItem[] = [
   {
     time: '10:00 AM',
-    label: 'Registration & Check-in',
-    description: 'Participant check-in, team badge allocation, and workspace setup.',
-    day: 1,
-    type: 'keynote',
-  },
-  {
-    time: '11:00 AM',
-    label: 'Opening Ceremony',
-    description: 'Welcome address by IEEE FISAT, keynote speaker, and track briefing.',
-    day: 1,
-    type: 'keynote',
-  },
-  {
-    time: '12:00 PM',
-    label: 'Hacking Begins 🚀',
-    description: '24-hour hacking clock officially starts. Repositories initialized.',
+    label: 'Event Launch & Hacking Begins 🚀',
+    // [CONFIRMED — 24-hour event starts at 10:00 AM]
+    description: 'Official event launch. The 24-hour hacking window starts and repositories are initialized.',
     day: 1,
     type: 'hack',
   },
   {
     time: '01:30 PM',
-    label: 'Lunch Break & Networking',
-    description: 'Buffet lunch provided for all registered participants.',
+    label: 'Lunch Break',
+    // [PROVISIONAL — meal arrangements subject to organizer confirmation]
+    description: 'Midday break. Meal arrangements: To be announced.',
     day: 1,
     type: 'food',
   },
   {
     time: '04:30 PM',
-    label: 'Mentor Check-in Round 1',
-    description: 'Technical guidance, architecture validation, and feasibility reviews.',
+    label: 'Progress Checkpoint',
+    // [TBA — mentorship arrangements to be announced]
+    description: 'Milestone checkpoint. Mentorship arrangements: To be announced.',
     day: 1,
     type: 'review',
   },
   {
     time: '08:00 PM',
-    label: 'Dinner & Recharge',
-    description: 'Dinner served at the venue dining hall.',
+    label: 'Dinner Break',
+    // [PROVISIONAL — meal arrangements subject to organizer confirmation]
+    description: 'Evening break. Refreshment arrangements: To be announced.',
     day: 1,
     type: 'food',
   },
   {
     time: '11:30 PM',
-    label: 'Midnight Fuel & Mini Activities',
-    description: 'Midnight snacks, coffee, and developer power-up chill session.',
+    label: 'Midnight Break',
+    // [PROVISIONAL — mid-event arrangements subject to organizer confirmation]
+    description: 'Mid-event break. Activity and refreshment arrangements: To be announced.',
     day: 1,
     type: 'food',
   },
   {
     time: '02:00 AM',
     label: 'Mid-Event Code Check',
-    description: 'Progress checkpoint and mentor availability for late-night debugging.',
+    description: 'Late-night milestone review. Mentorship arrangements: To be announced.',
     day: 2,
     type: 'review',
   },
   {
     time: '05:00 AM',
     label: 'Sprint Phase',
-    description: 'Final feature integration and UI polishing ahead of code freeze.',
+    description: 'Final development sprint and feature integration ahead of code freeze.',
     day: 2,
     type: 'hack',
   },
   {
     time: '07:30 AM',
-    label: 'Breakfast',
-    description: 'Morning refreshments and breakfast at the venue.',
+    label: 'Morning Break',
+    // [PROVISIONAL — meal arrangements subject to organizer confirmation]
+    description: 'Morning break. Refreshment arrangements: To be announced.',
     day: 2,
     type: 'food',
   },
   {
     time: '09:00 AM',
     label: 'Submissions Close & Code Freeze',
-    description: 'Final commit deadline. Pull requests and video/deck submissions lock.',
+    description: 'Final commit deadline. Project submissions format: To be announced.',
     day: 2,
     type: 'deadline',
   },
   {
     time: '09:30 AM',
-    label: 'Live Judging & Pitching',
-    description: 'Teams present 3-minute demos to the jury panel followed by Q&A.',
+    label: 'Project Evaluations',
+    // [PROVISIONAL — demo format and judging details subject to organizer confirmation]
+    description: 'Project review and evaluations. Judging format and demo details: To be announced.',
     day: 2,
     type: 'review',
   },
   {
-    time: '11:30 AM',
-    label: 'Closing Ceremony & Awards 🏆',
-    description: 'Announcement of winners, track awards, and closing remarks.',
+    // [CONFIRMED — 24-hour event concludes at 10:00 AM]
+    time: '10:00 AM',
+    label: 'Closing & Event Conclusion 🏆',
+    description: 'Announcement of results and official event conclusion at 24 hours.',
     day: 2,
     type: 'keynote',
   },
@@ -261,28 +260,44 @@ export const PRIZES: readonly PrizeItem[] = [
     title: 'Grand Champion',
     status: 'Prize TBA',
     description: 'Awarded to the overall most innovative, technically superior, and complete prototype developed during the 24 hours.',
-    perks: ['Cash Prize Pool (TBA)', 'Winner Trophy & Gold Medallions', 'Winner Certificates', 'Featured Spotlight'],
+    perks: [
+      'Prize details: To be announced.',
+      'Awards and recognition: To be announced.',
+      'Participant benefits: Subject to organizer confirmation.',
+    ],
   },
   {
     rank: '02',
     title: 'First Runner-Up',
     status: 'Prize TBA',
     description: 'Recognizing outstanding execution, technical complexity, and impactful real-world utility.',
-    perks: ['Cash Prize (TBA)', 'Silver Medallions', 'Runner-up Certificates', 'Partner Swag'],
+    perks: [
+      'Prize details: To be announced.',
+      'Awards and recognition: To be announced.',
+      'Participant benefits: Subject to organizer confirmation.',
+    ],
   },
   {
     rank: '03',
     title: 'Second Runner-Up',
     status: 'Prize TBA',
     description: 'Awarded to the team demonstrating exceptional problem-solving and rapid delivery.',
-    perks: ['Cash Prize (TBA)', 'Bronze Medallions', 'Achievement Certificates', 'Partner Swag'],
+    perks: [
+      'Prize details: To be announced.',
+      'Awards and recognition: To be announced.',
+      'Participant benefits: Subject to organizer confirmation.',
+    ],
   },
   {
     rank: '★',
     title: 'Track Excellence Awards',
     status: 'Prizes TBA',
     description: 'Special category honors for standout projects across individual technology tracks.',
-    perks: ['Special Category Honors', 'Certificate of Merit', 'Sponsor & Track Mentions'],
+    perks: [
+      'Prize details: To be announced.',
+      'Awards and recognition: To be announced.',
+      'Participant benefits: Subject to organizer confirmation.',
+    ],
   },
 ] as const
 
@@ -294,36 +309,36 @@ export const FAQS: readonly FAQ[] = [
   {
     question: 'Who can participate in SyntaxHeist?',
     answer:
-      'SyntaxHeist is open to all engineering and technology students currently enrolled in recognized colleges or universities. Teams may consist of 1 to 4 members, and cross-college teams are fully permitted.',
+      'SyntaxHeist is planned for engineering and technology students. Team size: To be announced. Official eligibility criteria and team formation guidelines will be confirmed in the published event rules by IEEE FISAT Student Branch.',
   },
   {
     question: 'Is there any registration fee?',
     answer:
-      'No. Registration for SyntaxHeist is completely free. Selected teams will be provided workspace access, internet, meals, snacks, and mentoring throughout the 24-hour period.',
+      'Registration fee and participation details are To Be Announced (TBA). Official fee structures and participant provisions will be confirmed by the organizers prior to registration opening.',
   },
   {
     question: 'Can we start building our project before the event?',
     answer:
-      'No. In the spirit of a fair hackathon, all project development, coding, and design must be initiated after the official hackathon start signal at 12:00 PM on 20 March 2027. You may explore ideas and familiarize yourself with APIs beforehand.',
+      'The 24-hour hackathon begins at 10:00 AM IST on 20 March 2027. Official guidelines regarding pre-event preparation and project development will be announced by the organizing committee.',
   },
   {
     question: 'What should we bring with us to FISAT?',
     answer:
-      'Bring your college ID card, personal laptop, chargers, extension cords if desired, and any specialized hardware/sensors your team plans to use. High-speed Wi-Fi, power outlets, meals, and designated rest spaces will be provided.',
+      'Participants are generally expected to bring their college ID, personal laptops, and chargers. Venue facilities, permitted equipment, and participant arrangements will be confirmed by the organizing committee.',
   },
   {
     question: 'Will mentorship be available during the hackathon?',
     answer:
-      'Yes. Mentors from academia and industry will conduct designated check-in rounds to help refine ideas, unblock technical hurdles, and provide constructive architectural feedback.',
+      'Mentorship arrangements: To be announced. Confirmed details regarding mentor availability and guidance will be communicated by the organizing committee prior to the event.',
   },
   {
     question: 'How will the projects be evaluated?',
     answer:
-      'A panel of judges will score projects based on innovation & originality, technical complexity, functional completion, practical feasibility, and presentation clarity during the final demo pitch.',
+      'Evaluation criteria, judging format, and demo details will be officially confirmed by the organizing committee prior to the event.',
   },
   {
     question: 'When will registration open?',
     answer:
-      'Official registration will open soon. Keep an eye on this website and IEEE FISAT Student Branch announcements for the registration link and selection timeline.',
+      'Official registration timeline will be announced soon. Keep an eye on this website and IEEE FISAT Student Branch announcements for the registration link and selection timeline.',
   },
 ] as const

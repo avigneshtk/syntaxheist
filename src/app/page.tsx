@@ -28,7 +28,6 @@ export const metadata: Metadata = {
 const TERMINAL_PHRASES = [
   '24 hours. Limitless innovation.',
   `${EVENT.date.displayStart} · ${EVENT.venue.shortName}, ${EVENT.venue.city}`,
-  'Open to all engineering students.',
   'Registration opening soon.',
   'Break the code. Build the future.',
 ]

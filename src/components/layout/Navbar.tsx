@@ -160,9 +160,8 @@ export default function Navbar() {
         aria-label="Mobile navigation"
         className={cn(
           'fixed top-16 left-0 right-0 z-40 md:hidden',
-          'bg-surface border-b border-primary/10 overflow-y-auto',
-          'transition-all duration-300 ease-in-out',
-          mobileOpen ? 'max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0 pointer-events-none',
+          'bg-surface border-b border-primary/10',
+          mobileOpen ? 'max-h-[calc(100vh-4rem)] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0 overflow-hidden pointer-events-none',
         )}
       >
         <div className="flex flex-col px-6 py-6 gap-4">

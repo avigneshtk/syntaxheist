@@ -27,11 +27,13 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #080b08;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* ── Custom utilities (Tailwind v4 @utility API) ────────────────────────── */
@@ -90,4 +92,28 @@ body {
 ::selection {
   background-color: rgba(114, 255, 117, 0.25);
   color:            #ffffff;
+}
+
+/* ── Chronometer digit animations ───────────────────────────────────────── */
+
+@keyframes digitRollIn {
+  0% {
+    transform: translateY(100%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes digitRollOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }

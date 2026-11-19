@@ -37,14 +37,14 @@ export default function PrizesSection() {
             Prize <span className="text-primary">Pool</span>
           </h2>
           <p className="mt-4 text-muted text-sm sm:text-base leading-relaxed">
-            Excellence and engineering craftsmanship will be rewarded. The full prize pool, cash awards,
-            and sponsor tracks are currently being finalized and will be published once officially confirmed.
+            Excellence and engineering craftsmanship will be rewarded. Prize details, award categories,
+            and participant benefits will be published once officially confirmed by the organizing committee.
           </p>
 
           {/* Official Placeholder Disclaimer */}
           <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-md bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-mono">
             <AlertCircle size={14} className="shrink-0" />
-            <span>PRIZE AMOUNTS ARE CURRENTLY PENDING OFFICIAL CONFIRMATION BY ORGANIZERS</span>
+            <span>PRIZE DETAILS & AWARDS ARE SUBJECT TO OFFICIAL CONFIRMATION BY ORGANIZERS</span>
           </div>
         </div>
 
@@ -114,7 +114,7 @@ export default function PrizesSection() {
         {/* Bottom Note */}
         <div className="mt-12 text-center">
           <p className="text-xs font-mono text-muted/60">
-            All registered participants receive physical credentials, participation certificates, and exclusive SyntaxHeist swag kits.
+            Participant benefits: Subject to organizer confirmation.
           </p>
         </div>
 

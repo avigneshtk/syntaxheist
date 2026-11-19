@@ -65,7 +65,7 @@ export default function VenueSection() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-white">Angamaly Railway Station</h4>
-                    <p className="text-[11px] text-muted">~8 km from campus</p>
+                    <p className="text-[11px] text-muted">~8 km (Approximate transit distance)</p>
                   </div>
                 </div>
 
@@ -75,7 +75,7 @@ export default function VenueSection() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-white">Cochin International Airport</h4>
-                    <p className="text-[11px] text-muted">~14 km from campus</p>
+                    <p className="text-[11px] text-muted">~14 km (Approximate transit distance)</p>
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function VenueSection() {
               </a>
               <span className="text-xs font-mono text-muted/60 flex items-center gap-1.5">
                 <MapPin size={12} className="text-primary" />
-                Coordinates: 10.2312° N, 76.4103° E
+                Location: Angamaly, Ernakulam, Kerala
               </span>
             </div>
           </div>
@@ -107,9 +107,9 @@ export default function VenueSection() {
                 <Wifi size={20} />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Dedicated High-Speed Network</h4>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Campus Connectivity</h4>
                 <p className="text-xs text-muted mt-1 leading-relaxed">
-                  High-bandwidth gigabit Wi-Fi infrastructure configured specifically for concurrent hackathon participants and remote API access.
+                  Network connectivity and on-site access arrangements will be confirmed by the organizing committee.
                 </p>
               </div>
             </div>
@@ -119,9 +119,9 @@ export default function VenueSection() {
                 <Zap size={20} />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">24/7 Uninterrupted Power</h4>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Workspace & Power</h4>
                 <p className="text-xs text-muted mt-1 leading-relaxed">
-                  Complete laboratory workspace power backup ensuring continuous sprint development through the night without disruptions.
+                  Venue facilities, power access, and workspace arrangements will be confirmed by the organizing committee.
                 </p>
               </div>
             </div>
@@ -131,9 +131,9 @@ export default function VenueSection() {
                 <Building size={20} />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Rest & Refreshment Zones</h4>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Facilities & Logistics</h4>
                 <p className="text-xs text-muted mt-1 leading-relaxed">
-                  Dedicated dining halls for scheduled meals, round-the-clock coffee stations, and designated quiet recovery zones.
+                  Venue facilities and participant arrangements will be confirmed by the organizing committee.
                 </p>
               </div>
             </div>
