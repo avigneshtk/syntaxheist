@@ -6,7 +6,7 @@ import { MapPin, Mail } from 'lucide-react'
 import SHMonogram from '@/components/ui/SHMonogram'
 import { NAV_LINKS, EVENT } from '@/lib/constants'
 
-const CURRENT_YEAR = 2026
+const CURRENT_YEAR = new Date().getFullYear()
 
 export default function Footer() {
   return (

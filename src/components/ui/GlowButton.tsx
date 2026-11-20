@@ -1,32 +1,32 @@
-// GlowButton — primary CTA button for SyntaxHeist.
-// Renders as <Link> when href is provided, otherwise as <button>.
-// Supports 'primary' (filled) and 'outline' variants, and sm/md/lg sizes.
 
 import Link from 'next/link'
+import type { ComponentProps, ReactNode, MouseEventHandler } from 'react'
 import { cn } from '@/lib/utils'
 import type { ButtonVariant, ButtonSize } from '@/lib/types'
 
-// ─── Prop types with discriminated union ────────────────────────────────────
+// ─── Prop types ──────────────────────────────────────────────────────────────
 
 interface BaseProps {
-  children:   React.ReactNode
-  variant?:   ButtonVariant
-  size?:      ButtonSize
+  children: ReactNode
+  variant?: ButtonVariant
+  size?: ButtonSize
   className?: string
 }
 
-interface AsLinkProps extends BaseProps {
-  href:      string
-  onClick?:  React.MouseEventHandler<HTMLAnchorElement>
+interface AsLinkProps
+  extends BaseProps,
+    Omit<ComponentProps<typeof Link>, 'href' | 'className' | 'children'> {
+  href: string
+  onClick?: MouseEventHandler<HTMLAnchorElement>
   disabled?: never
-  type?:     never
+  type?: never
 }
 
 interface AsButtonProps extends BaseProps {
-  href?:     never
-  onClick?:  React.MouseEventHandler<HTMLButtonElement>
+  href?: never
+  onClick?: MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
-  type?:     'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset'
 }
 
 type GlowButtonProps = AsLinkProps | AsButtonProps
@@ -50,39 +50,51 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: 'min-h-12 px-8 py-4 text-sm tracking-widest',
 }
 
-// ─── Component ───────────────────────────────────────────────────────────────
+// ─── Component ──────────────────────────────────────────────────────────────
 
-export default function GlowButton({
-  children,
-  variant  = 'primary',
-  size     = 'md',
-  className = '',
-  href,
-  onClick,
-  disabled,
-  type = 'button',
-}: GlowButtonProps) {
+export default function GlowButton(props: GlowButtonProps) {
+  const {
+    children,
+    variant = 'primary',
+    size = 'md',
+    className = '',
+  } = props
+
   const classes = cn(
-    // Base
     'inline-flex items-center justify-center gap-2',
     'rounded-sm uppercase font-mono leading-tight text-center',
     'transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base',
-    // Variant + size
     variantClasses[variant],
     sizeClasses[size],
-    // Disabled state (button only)
-    disabled && 'opacity-40 cursor-not-allowed pointer-events-none',
+    'disabled:opacity-40 disabled:cursor-not-allowed',
     className,
   )
 
-  if (href !== undefined) {
+  if ('href' in props && props.href !== undefined) {
+    const {
+      href,
+      onClick,
+      ...linkProps
+    } = props
+
     return (
-      <Link href={href} onClick={onClick} className={classes}>
+      <Link
+        {...linkProps}
+        href={href}
+        onClick={onClick}
+        className={classes}
+      >
         {children}
       </Link>
     )
   }
+
+  const {
+    onClick,
+    disabled,
+    type = 'button',
+  } = props
 
   return (
     <button

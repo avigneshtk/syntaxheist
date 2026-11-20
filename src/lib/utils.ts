@@ -1,10 +1,11 @@
+
 // ─────────────────────────────────────────────────────────────────────────────
-// SyntaxHeist — utility helpers
+// SyntaxHeist — Shared Utility Helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Lightweight class name joiner — merges conditional Tailwind classes safely.
- * Avoids adding clsx/tailwind-merge as dependencies for simple use cases.
+ * Lightweight class name joiner.
+ * Filters out falsy values and joins valid class names.
  */
 export function cn(
   ...classes: (string | undefined | null | false | 0)[]
@@ -12,53 +13,91 @@ export function cn(
   return classes.filter(Boolean).join(' ')
 }
 
-// ─── Countdown helpers ───────────────────────────────────────────────────────
+// ─── Countdown Helpers ───────────────────────────────────────────────────────
 
 export interface TimeRemaining {
-  total:   number
-  days:    number
-  hours:   number
+  total: number
+  days: number
+  hours: number
   minutes: number
   seconds: number
-  isPast:  boolean
+  isPast: boolean
 }
 
-/** Returns the time remaining until a target Date. */
+/**
+ * Returns the time remaining until a target date.
+ * Returns zero values when the target date has passed.
+ */
 export function getTimeRemaining(target: Date): TimeRemaining {
-  const total = target.getTime() - Date.now()
+  const targetTime = target.getTime()
 
-  if (total <= 0) {
-    return { total: 0, days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true }
+  if (!Number.isFinite(targetTime)) {
+    return {
+      total: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      isPast: true,
+    }
+  }
+
+  const total = Math.max(0, targetTime - Date.now())
+
+  if (total === 0) {
+    return {
+      total: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      isPast: true,
+    }
   }
 
   return {
     total,
-    days:    Math.floor(total / (1000 * 60 * 60 * 24)),
-    hours:   Math.floor((total / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((total / (1000 * 60)) % 60),
-    seconds: Math.floor((total / 1000) % 60),
-    isPast:  false,
+    days: Math.floor(total / 86_400_000),
+    hours: Math.floor((total / 3_600_000) % 24),
+    minutes: Math.floor((total / 60_000) % 60),
+    seconds: Math.floor((total / 1_000) % 60),
+    isPast: false,
   }
 }
 
-/** Zero-pads a number to at least 2 digits. */
-export function pad(n: number): string {
-  return String(n).padStart(2, '0')
+/**
+ * Zero-pads a number to at least two digits.
+ */
+export function pad(value: number): string {
+  return String(value).padStart(2, '0')
 }
 
-// ─── Validation helpers (used by registration form) ──────────────────────────
+// ─── Validation Helpers ──────────────────────────────────────────────────────
 
-/** Checks that a string is non-empty after trimming. */
+/**
+ * Checks whether a string contains non-whitespace characters.
+ */
 export function isNonEmpty(value: string): boolean {
-  return value.trim().length > 0
+  return typeof value === 'string' && value.trim().length > 0
 }
 
-/** Basic email format check. */
+/**
+ * Validates a basic email address format.
+ */
 export function isValidEmail(value: string): boolean {
+  if (typeof value !== 'string') return false
+
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
 }
 
-/** Accepts 10-digit Indian mobile numbers with optional +91 prefix. */
+/**
+ * Validates a 10-digit Indian mobile number.
+ * Accepts an optional +91 country code and spaces or hyphens.
+ */
 export function isValidPhone(value: string): boolean {
-  return /^(\+91[\s-]?)?[6-9]\d{9}$/.test(value.trim().replace(/\s/g, ''))
+  if (typeof value !== 'string') return false
+
+  const normalized = value.trim().replace(/[\s-]/g, '')
+
+  return /^(?:\+91)?[6-9]\d{9}$/.test(normalized)
 }

@@ -24,7 +24,7 @@ import { EVENT, TRACKS, SCHEDULE, PRIZES, FAQS } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'Event Guide | SyntaxHeist 2027',
   description:
-    'Official event guide for SyntaxHeist 2027, the 24-hour hackathon organized by IEEE FISAT Student Branch.',
+    'Event guide for SyntaxHeist 2027, a planned 24-hour hackathon organized by IEEE FISAT Student Branch. Event details are subject to organizer confirmation.',
 }
 
 const cardHover =
@@ -70,7 +70,7 @@ const participationItems = [
     icon: Code2,
     title: 'Build During the Hackathon',
     description:
-      'The 24-hour hacking window begins at 10:00 AM IST on 20 March 2027. Project development guidelines will be announced by the organizing committee.',
+      'The planned 24-hour hacking window is scheduled to begin at 10:00 AM IST on 20 March 2027. The final timing and project development guidelines will be announced by the organizing committee.',
   },
 ]
 
@@ -130,6 +130,21 @@ export default function EventGuidePage() {
                 {EVENT.venue.shortName} · {EVENT.venue.city}
               </span>
             </div>
+
+            <div
+              role="note"
+              className="mt-8 rounded-lg border border-yellow-500/30 bg-yellow-500/5 p-4 text-left"
+            >
+              <p className="text-xs font-mono uppercase tracking-widest text-yellow-400">
+                EVENT INFORMATION: PROVISIONAL
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                Event dates, timings, venue arrangements, tracks, and
+                participation details are currently planned information
+                and remain subject to official organizer confirmation.
+                Please follow official announcements for final details.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -151,9 +166,9 @@ export default function EventGuidePage() {
 
           <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted">
             {EVENT.fullName} is a {EVENT.edition} organized by{' '}
-            {EVENT.organizer}. Participants will work on innovative
-            solutions, develop prototypes, and collaborate across
-            technology domains during an intensive 24-hour event.
+            {EVENT.organizer}. Participants are expected to work on
+            innovative solutions, develop prototypes, and collaborate
+            across technology domains during an intensive 24-hour event.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -216,7 +231,7 @@ export default function EventGuidePage() {
           </h2>
 
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-            Explore the technology domains featured in SyntaxHeist.
+            Explore the proposed technology domains for SyntaxHeist.
             Choose a direction for your innovation and build a meaningful solution.
           </p>
 
@@ -578,7 +593,7 @@ export default function EventGuidePage() {
             {FAQS.map((faq) => (
               <details
                 key={faq.question}
-                className={`group overflow-hidden rounded-lg border border-primary/15 bg-surface transition-colors duration-300 open:border-primary/40 motion-reduce:transition-none`}
+                className="group overflow-hidden rounded-lg border border-primary/15 bg-surface transition-colors duration-300 open:border-primary/40 motion-reduce:transition-none"
               >
                 <summary className="flex cursor-pointer list-none items-center gap-4 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary [&::-webkit-details-marker]:hidden">
                   <CircleHelp
@@ -679,25 +694,6 @@ export default function EventGuidePage() {
           </div>
         </div>
       </section>
-
-      {/* Footer navigation */}
-      <footer className="relative border-t border-primary/10 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
-          <Link
-            href="/"
-            className="text-xs font-mono text-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <span className="inline-flex items-center gap-2">
-              <ArrowLeft size={13} aria-hidden="true" />
-              Back to SyntaxHeist
-            </span>
-          </Link>
-
-          <p className="text-center text-[10px] font-mono uppercase tracking-widest text-muted/40">
-           © 2027 SyntaxHeist · IEEE FISAT
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
