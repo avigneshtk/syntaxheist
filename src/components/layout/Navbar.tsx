@@ -39,6 +39,8 @@ export default function Navbar() {
     if (e.key === 'Escape' && mobileOpen) setMobileOpen(false)
   }, [mobileOpen])
 
+
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
@@ -158,10 +160,15 @@ export default function Navbar() {
       <nav
         id="mobile-nav"
         aria-label="Mobile navigation"
+        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
         className={cn(
           'fixed top-16 left-0 right-0 z-40 md:hidden',
-          'bg-surface border-b border-primary/10',
-          mobileOpen ? 'max-h-[calc(100vh-4rem)] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0 overflow-hidden pointer-events-none',
+          'bg-surface/95 backdrop-blur-xl border-b border-primary/15 shadow-[0_18px_36px_rgba(0,0,0,0.35)]',
+          'transition-[max-height,opacity,transform] duration-300 ease-out',
+          mobileOpen
+            ? 'max-h-[calc(100dvh-4rem)] translate-y-0 opacity-100 overflow-y-auto'
+            : 'max-h-0 -translate-y-2 opacity-0 overflow-hidden pointer-events-none',
         )}
       >
         <div className="flex flex-col px-6 py-6 gap-4">

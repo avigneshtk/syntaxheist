@@ -1,23 +1,17 @@
+
 'use client'
 
-// TerminalText — typewriter effect cycling through an array of phrases.
-// Client Component: uses browser APIs (setTimeout, matchMedia).
-//
-// Accessibility:
-//   - aria-live="polite" so screen readers announce phrase changes.
-//   - A visually-hidden <span> provides the full current phrase to screen
-//     readers so they're not disrupted by mid-word updates.
-//   - prefers-reduced-motion: immediately shows the first phrase, no animation.
+// TerminalText — accessible typewriter effect cycling through phrases.
 
 import { useState, useEffect, useSyncExternalStore } from 'react'
 import { cn } from '@/lib/utils'
 
 interface TerminalTextProps {
-  phrases:        string[]
-  typingSpeed?:   number  // ms per character while typing
-  erasingSpeed?:  number  // ms per character while erasing
-  pauseDuration?: number  // ms to hold the completed phrase before erasing
-  className?:     string
+  phrases: string[]
+  typingSpeed?: number
+  erasingSpeed?: number
+  pauseDuration?: number
+  className?: string
 }
 
 function subscribeReducedMotion(callback: () => void) {
@@ -36,28 +30,28 @@ function getReducedMotionServerSnapshot() {
 
 export default function TerminalText({
   phrases,
-  typingSpeed   = 75,
-  erasingSpeed  = 35,
+  typingSpeed = 75,
+  erasingSpeed = 35,
   pauseDuration = 2200,
-  className     = '',
+  className = '',
 }: TerminalTextProps) {
   const reducedMotion = useSyncExternalStore(
     subscribeReducedMotion,
     getReducedMotionSnapshot,
     getReducedMotionServerSnapshot
   )
-  const [displayed,   setDisplayed]   = useState(phrases[0] ?? '')
-  const [phraseIndex, setPhraseIndex] = useState(0)
-  const [isErasing,   setIsErasing]   = useState(false)
 
-  // Typewriter loop
+  const [displayed, setDisplayed] = useState(phrases[0] ?? '')
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isErasing, setIsErasing] = useState(false)
+
+  // Typewriter animation
   useEffect(() => {
     if (reducedMotion || phrases.length === 0) return
 
     const currentPhrase = phrases[phraseIndex] ?? ''
 
     if (!isErasing) {
-      // Still typing
       if (displayed.length < currentPhrase.length) {
         const id = setTimeout(
           () => setDisplayed(currentPhrase.slice(0, displayed.length + 1)),
@@ -65,28 +59,34 @@ export default function TerminalText({
         )
         return () => clearTimeout(id)
       }
-      // Fully typed — wait, then start erasing
+
       const id = setTimeout(() => setIsErasing(true), pauseDuration)
       return () => clearTimeout(id)
-    } else {
-      // Still erasing
-      if (displayed.length > 0) {
-        const id = setTimeout(
-          () => setDisplayed(displayed.slice(0, -1)),
-          erasingSpeed,
-        )
-        return () => clearTimeout(id)
-      }
-      // Fully erased — advance to next phrase asynchronously
-      const id = setTimeout(() => {
-        setIsErasing(false)
-        setPhraseIndex((i) => (i + 1) % phrases.length)
-      }, erasingSpeed)
+    }
+
+    if (displayed.length > 0) {
+      const id = setTimeout(
+        () => setDisplayed(displayed.slice(0, -1)),
+        erasingSpeed,
+      )
       return () => clearTimeout(id)
     }
+
+    const id = setTimeout(() => {
+      setIsErasing(false)
+      setPhraseIndex((i) => (i + 1) % phrases.length)
+    }, erasingSpeed)
+
+    return () => clearTimeout(id)
   }, [
-    displayed, isErasing, phraseIndex, phrases,
-    typingSpeed, erasingSpeed, pauseDuration, reducedMotion,
+    displayed,
+    isErasing,
+    phraseIndex,
+    phrases,
+    typingSpeed,
+    erasingSpeed,
+    pauseDuration,
+    reducedMotion,
   ])
 
   if (reducedMotion) {
@@ -98,22 +98,20 @@ export default function TerminalText({
   }
 
   return (
-    <span
-      className={cn('font-mono', className)}
-      aria-live="polite"
-      aria-atomic="true"
-    >
-      {/* Visible animated text — hidden from AT to avoid choppy announcements */}
-      <span aria-hidden="true">{displayed}</span>
-
-      {/* Full phrase for screen readers */}
-      <span className="sr-only">{phrases[phraseIndex]}</span>
-
-      {/* Blinking cursor */}
+    <>
+      {/* Visual animation: hidden from screen readers */}
       <span
+        className={cn('font-mono', className)}
         aria-hidden="true"
-        className="inline-block w-[2px] h-[1.1em] bg-current ml-[2px] align-middle animate-pulse motion-reduce:animate-none"
-      />
-    </span>
+      >
+        {displayed}
+        <span className="inline-block w-[2px] h-[1.1em] bg-current ml-[2px] align-middle animate-pulse motion-reduce:animate-none" />
+      </span>
+
+      {/* Screen-reader text: updates only when the phrase changes */}
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {phrases[phraseIndex] ?? ''}
+      </span>
+    </>
   )
 }

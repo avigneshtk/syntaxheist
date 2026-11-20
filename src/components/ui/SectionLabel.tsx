@@ -1,18 +1,17 @@
-// SectionLabel — small green uppercase eyebrow label above section headings.
-// Use to orient the reader before each major section.
 
+import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SectionLabelProps {
-  children:   React.ReactNode
+  children: ReactNode
   className?: string
-  as?:        'p' | 'span' | 'div'
+  as?: 'p' | 'span' | 'div'
 }
 
 export default function SectionLabel({
   children,
   className = '',
-  as: Tag   = 'p',
+  as: Tag = 'p',
 }: SectionLabelProps) {
   return (
     <Tag

@@ -35,19 +35,19 @@ type GlowButtonProps = AsLinkProps | AsButtonProps
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-[#080b08] font-bold ' +
-    'hover:bg-white hover:shadow-[0_0_28px_rgba(114,255,117,0.6)] ' +
-    'active:scale-95',
+    'bg-primary !text-[#080b08] font-bold ' +
+    'hover:bg-white hover:!text-[#080b08] hover:shadow-[0_0_28px_rgba(114,255,117,0.45)] ' +
+    'active:scale-[0.98]',
   outline:
     'bg-transparent text-primary border border-primary/60 font-semibold ' +
-    'hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(114,255,117,0.3)] ' +
-    'active:scale-95',
+    'hover:border-primary hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px_rgba(114,255,117,0.22)] ' +
+    'active:scale-[0.98]',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'px-4 py-2 text-xs tracking-widest',
-  md: 'px-6 py-3 text-sm tracking-widest',
-  lg: 'px-8 py-4 text-sm tracking-widest',
+  sm: 'min-h-10 px-4 py-2 text-xs tracking-widest',
+  md: 'min-h-11 px-6 py-3 text-sm tracking-widest',
+  lg: 'min-h-12 px-8 py-4 text-sm tracking-widest',
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -65,8 +65,8 @@ export default function GlowButton({
   const classes = cn(
     // Base
     'inline-flex items-center justify-center gap-2',
-    'rounded-sm uppercase font-mono',
-    'transition-all duration-200 ease-out',
+    'rounded-sm uppercase font-mono leading-tight text-center',
+    'transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base',
     // Variant + size
     variantClasses[variant],

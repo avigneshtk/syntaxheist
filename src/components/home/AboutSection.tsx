@@ -105,35 +105,35 @@ export default function AboutSection() {
               </div>
 
               <div className="bg-base/80 p-4 rounded border border-primary/10 space-y-2 text-[11px]">
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">EVENT:</span>
                   <span className="text-white font-bold">{EVENT.fullName}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">ORGANIZER:</span>
                   <span className="text-primary">{EVENT.organizer}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">WINDOW:</span>
                   <span className="text-white">24 Continuous Hours</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">DATE:</span>
                   <span className="text-white">{EVENT.date.displayStart}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">VENUE:</span>
                   <span className="text-white">{EVENT.venue.shortName}, {EVENT.venue.city}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">TEAM SIZE:</span>
                   <span className="text-white">To be announced</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">ADMISSION:</span>
                   <span className="text-primary uppercase font-bold">{EVENT.registration.fee}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                   <span className="text-muted/70">STATUS:</span>
                   <span className="text-yellow-400 font-bold uppercase">Registration Opening Soon</span>
                 </div>

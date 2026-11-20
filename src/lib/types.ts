@@ -42,7 +42,7 @@ export interface PrizeItem {
   perks: readonly string[]
 }
 
-// ─── Registration form ───────────────────────────────────────────────────────
+// ─── Registration form & backend ─────────────────────────────────────────────
 
 export interface TeamMember {
   name: string
@@ -52,7 +52,7 @@ export interface TeamMember {
 
 export interface RegistrationFormData {
   teamName: string
-  teamSize: 1 | 2 | 3 | 4
+  teamSize: number
   trackId: string
   leaderName: string
   leaderEmail: string
@@ -60,7 +60,27 @@ export interface RegistrationFormData {
   leaderCollege: string
   members: TeamMember[]
   agreedToTerms: boolean
+  honeypot?: string
 }
+
+export type RegistrationStatus = 'coming_soon' | 'preview' | 'open' | 'closed'
+
+export type RegistrationActionResponse =
+  | {
+      success: true
+      registrationId: string
+      teamName: string
+      trackId: string
+      teamSize: number
+      submittedAt: string
+      status: string
+      message?: string
+    }
+  | {
+      success: false
+      error: string
+      fieldErrors?: Record<string, string[]>
+    }
 
 // ─── UI helpers ──────────────────────────────────────────────────────────────
 
