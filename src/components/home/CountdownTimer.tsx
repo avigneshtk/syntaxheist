@@ -1,3 +1,4 @@
+
 'use client'
 
 // CountdownTimer — Futuristic Digital Chronometer for SyntaxHeist.
@@ -117,11 +118,11 @@ function ChronoUnit({
   const digits = value.split('')
 
   return (
-    <div className="relative group flex flex-col items-center">
+    <div className="relative group flex w-full flex-col items-center sm:w-auto">
       {/* Outer Chronometer Instrument Housing */}
       <div
-        className="relative bg-surface/90 border border-primary/20 rounded-md
-                   p-2 sm:p-3 md:p-3.5
+        className="relative w-full bg-surface/90 border border-primary/20 rounded-md
+                   p-2 sm:w-auto sm:p-3 md:p-3.5
                    flex flex-col items-center justify-center
                    shadow-[0_4px_20px_rgba(0,0,0,0.6)]
                    transition-all duration-300 group-hover:border-primary/45 group-hover:shadow-[0_0_20px_rgba(114,255,117,0.15)]"
@@ -139,7 +140,7 @@ function ChronoUnit({
         <span className="absolute bottom-1 right-1 w-1 h-1 border-b border-r border-primary/40 pointer-events-none" />
 
         {/* Digit Cells Cluster */}
-        <div className="flex items-center gap-1 sm:gap-1.5">
+        <div className="flex items-center justify-center gap-1 sm:gap-1.5">
           {digits.map((digit, idx) => (
             <ChronoDigit key={`${idx}-${label}`} digit={digit} />
           ))}
@@ -162,7 +163,7 @@ function ChronoSeparator() {
   return (
     <div
       aria-hidden="true"
-      className="flex flex-col items-center justify-center gap-2 sm:gap-3 py-2 px-0.5 sm:px-1 select-none"
+      className="hidden sm:flex flex-col items-center justify-center gap-2 sm:gap-3 py-2 px-0.5 sm:px-1 select-none"
     >
       <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary/80 shadow-[0_0_8px_rgba(114,255,117,0.6)] animate-pulse motion-reduce:animate-none" />
       <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-primary/80 shadow-[0_0_8px_rgba(114,255,117,0.6)] animate-pulse motion-reduce:animate-none" />
@@ -202,10 +203,13 @@ export default function CountdownTimer() {
       {/* Visual Digital Chronometer */}
       <div
         aria-hidden="true"
-        className="flex items-center justify-center gap-1.5 sm:gap-2.5 md:gap-4 flex-nowrap"
+        className="grid grid-cols-2 gap-3 sm:flex sm:flex-nowrap sm:items-center sm:justify-center sm:gap-1.5 md:gap-2.5 lg:gap-4"
       >
         {timeBlocks.map((block, idx) => (
-          <div key={block.label} className="flex items-center gap-1.5 sm:gap-2.5 md:gap-4">
+          <div
+            key={block.label}
+            className="flex min-w-0 items-center justify-center gap-1.5 sm:gap-2.5 md:gap-4"
+          >
             <ChronoUnit label={block.label} value={block.value} />
             {idx < timeBlocks.length - 1 && <ChronoSeparator />}
           </div>
@@ -214,7 +218,7 @@ export default function CountdownTimer() {
 
       {/* Chronometer Status Telemetry Footer */}
       <div className="text-center mt-4">
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-base/80 border border-primary/20 text-[10px] font-mono text-muted/70 tracking-widest uppercase">
+        <span className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 px-3 py-1 rounded-full bg-base/80 border border-primary/20 text-[10px] font-mono text-muted/70 tracking-widest uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse motion-reduce:animate-none" />
           T-Minus To Launch · {EVENT.date.displayStart}, {EVENT.date.displayTime}
         </span>
